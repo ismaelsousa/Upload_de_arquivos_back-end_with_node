@@ -1,5 +1,8 @@
 require('dotenv').config();
 const path = require('path')
+
+//para poder receber request de outra app
+const cors = require('cors')
 const express = require("express")
 const app = express();
 //faz logos
@@ -11,6 +14,7 @@ mongoose.connect(process.env.MONGO_URL,{
     useNewUrlParser: true
 })
 
+app.use(cors())//liberar acesso para qualquer dominio acessa a api
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(morgan('dev'))
